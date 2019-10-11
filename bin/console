@@ -8,6 +8,8 @@ def reload
   load 'lib/todo_lists/models/item.rb'
 end
 
+ActiveRecord::Base.logger = Logger.new(STDOUT)
+
 require 'pry'
 
 Pry.start(TodoLists) # start in context of the namespace TodoLists, so I do not have to reference my models like this TodoLists::List but just List
