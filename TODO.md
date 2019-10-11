@@ -8,7 +8,8 @@ Mantra
 
 Implement Functionality
 
-  [] Setup basic structure
+  [X] Setup basic structure
+  [X] Setup gem requirements
   [] Develop basic user interface
   [] Develop from outside to inside
   [] make new todo list with a title
