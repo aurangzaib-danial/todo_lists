@@ -4,4 +4,3 @@ require "todo_lists"
 
 
 TodoLists::CLI.new.call
-puts ActiveRecord.inspect

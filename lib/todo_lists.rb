@@ -1,5 +1,10 @@
-require 'active_record'
-
 require "todo_lists/version"
 
-require 'todo_lists/cli'
+require_relative '../config/environment'
+
+ActiveRecord::Migration.check_pending!
+
+require 'todo_lists/controllers/cli'
+
+require 'todo_lists/models/list'
+require 'todo_lists/models/item'

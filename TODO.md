@@ -10,8 +10,8 @@ Implement Functionality
 
   [X] Setup basic structure
   [X] Setup gem requirements
+  [] Setup database
   [] Develop basic user interface
-  [] Develop from outside to inside
   [] make new todo list with a title
   [] list all todo lists
   [] update a list title
