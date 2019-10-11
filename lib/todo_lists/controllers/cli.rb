@@ -1,8 +1,8 @@
 class TodoLists::CLI
 
-  attr_reader :list_controller
+  attr_reader :lists_controller
   def initialize
-    @list_controller = TodoLists::ListController.new
+    @lists_controller = TodoLists::ListsController.new
   end
 
 
@@ -10,7 +10,7 @@ class TodoLists::CLI
 
     if TodoLists::List.count == 0
       puts 'You have no TodoList, create one or type \'/exit\''
-      list_controller.new
+      lists_controller.new
 
       menu if TodoLists::List.count == 1
     else
@@ -19,34 +19,34 @@ class TodoLists::CLI
   end
 
   def menu
-    list_controller.index
-    until list_controller.last_input == '/exit'
+    lists_controller.index
+    until lists_controller.last_input == '/exit'
 
       puts 'Enter list number or \'/help\' for more options or type /exit'
 
-      list_controller.get_input
+      lists_controller.get_input
 
-      last_input = list_controller.last_input.downcase
+      last_input = lists_controller.last_input.downcase
 
       if last_input.to_i > 0
-        list_controller.show
+        lists_controller.show
 
       elsif last_input == '/new'
-        list_controller.new
+        lists_controller.new
 
       elsif last_input.match?(/\/edit\s\d+/)
-        list_controller.edit
-        list_controller.index
+        lists_controller.edit
+        lists_controller.index
 
       elsif last_input.match?(/\/delete\s\d+/)
-        list_controller.delete
-        list_controller.index
+        lists_controller.delete
+        lists_controller.index
 
       elsif last_input == '/index'
-        list_controller.index
+        lists_controller.index
 
       elsif last_input == '/help'
-        list_controller.help
+        lists_controller.help
       end
 
     end

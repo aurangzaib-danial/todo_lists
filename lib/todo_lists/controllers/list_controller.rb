@@ -1,4 +1,4 @@
-class TodoLists::ListController
+class TodoLists::ListsController
 
   attr_reader :last_input
 
