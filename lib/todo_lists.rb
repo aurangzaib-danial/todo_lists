@@ -8,4 +8,4 @@ require 'todo_lists/models/list'
 require 'todo_lists/models/item'
 
 require 'todo_lists/controllers/cli'
-require 'todo_lists/controllers/list_controller'
+require 'todo_lists/controllers/lists_controller'
