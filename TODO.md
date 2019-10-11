@@ -10,7 +10,8 @@ Implement Functionality
 
   [X] Setup basic structure
   [X] Setup gem requirements
-  [] Setup database
+  [X] Setup database
+  [X] Test model associations in console 
   [] Develop basic user interface
   [] make new todo list with a title
   [] list all todo lists
