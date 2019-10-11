@@ -11,12 +11,12 @@ Implement Functionality
   [X] Setup basic structure
   [X] Setup gem requirements
   [X] Setup database
-  [X] Test model associations in console 
-  [] Develop basic user interface
-  [] make new todo list with a title
-  [] list all todo lists
-  [] update a list title
-  [] delete a list
+  [X] Test model associations in console
+  [X] Develop basic user interface
+  [X] make new todo list with a title
+  [X] list all todo lists
+  [X] update a list title
+  [X] delete a list
   [] list a specific list
   [] add items to a list
   [] edit item of a list
