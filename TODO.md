@@ -17,6 +17,7 @@ Implement Functionality
   [X] list all todo lists
   [X] update a list title
   [X] delete a list
+  [] Move all list cli functionality to its own controller
   [] list a specific list
   [] add items to a list
   [] edit item of a list
