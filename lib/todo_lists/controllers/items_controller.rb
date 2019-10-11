@@ -1,8 +1,8 @@
-class TodoLists::ListsController
+class TodoLists::ItemsController
 
   attr_reader :last_input
 
-  List = TodoLists::List
+  Item = TodoLists::Item
 
   def help
     puts "\nOptions available"

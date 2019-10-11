@@ -3,22 +3,19 @@ class TodoLists::CLI
   attr_reader :lists_controller
   def initialize
     @lists_controller = TodoLists::ListsController.new
+    @items_controller = TodoLists::ItemsController.new
   end
 
 
   def call
-
     if TodoLists::List.count == 0
-      puts 'You have no TodoList, create one or type \'/exit\''
       lists_controller.new
-
-      menu if TodoLists::List.count == 1
     else
-      menu
+      lists_menu  # only list menu if a list was created
     end
   end
 
-  def menu
+  def lists_menu
     lists_controller.index
     until lists_controller.last_input == '/exit'
 
@@ -29,7 +26,8 @@ class TodoLists::CLI
       last_input = lists_controller.last_input.downcase
 
       if last_input.to_i > 0
-        lists_controller.show
+        @list = TodoLists::List.find_by_id(last_input)
+        items_menu(@list) if @list
 
       elsif last_input == '/new'
         lists_controller.new
@@ -50,6 +48,10 @@ class TodoLists::CLI
       end
 
     end
+  end
+
+  def items_menu
+    @list
   end
 
 end
