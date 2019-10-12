@@ -15,7 +15,12 @@ class TodoLists::ItemsController
   end
 
   def done
-    
+    item_index = last_input.split(' ')[1]
+    item = Item.find_by_index_and_list_id(index: item_index, list_id: list.id)
+    if item
+      item.done = true
+      item.save
+    end
   end
 
   def edit
@@ -51,7 +56,7 @@ class TodoLists::ItemsController
       puts '#   item'
       puts '--   -----'
       list.items.reload.each.with_index(1) do |item, index|
-        puts "#{index}: #{item.content.capitalize}"
+        puts "#{index}: #{item.content.capitalize} [#{'X' if item.done?}]"
       end
     end
   end
