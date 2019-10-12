@@ -8,13 +8,19 @@ class TodoLists::CLI
 
 
   def call
+
     if TodoLists::List.count == 0
+      lists_controller.index
       lists_controller.new
       @list = TodoLists::List.last
-      items_menu if @list
+      if @list
+        items_menu
+        lists_menu
+      end
+    else
+      lists_menu
     end
 
-    lists_menu
   end
 
   def lists_menu

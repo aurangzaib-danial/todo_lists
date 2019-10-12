@@ -1,7 +1,5 @@
-require 'sqlite3'
-require 'active_record'
-
+# This file is for development purposes
 ActiveRecord::Base.establish_connection(
-  database: 'db/todo_lists.sqlite',
+  database: "db/todo_lists.sqlite",
   adapter: 'sqlite3'
 )

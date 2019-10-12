@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# require "bundler/setup" # commment out when publishing
+require "bundler/setup" # commment out when publishing
 require "todo_lists"
 
 

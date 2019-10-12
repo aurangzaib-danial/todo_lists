@@ -31,6 +31,7 @@ class TodoLists::ListsController
       get_input
 
       if last_input.downcase == 'y'
+        list.items.destroy_all
         list.destroy
       end
 
@@ -38,18 +39,19 @@ class TodoLists::ListsController
   end
 
   def index
-    puts
-    puts '---------------TodoLists---------------'
-    puts '#   title'
-    puts '--   -----'
-    List.all.each.with_index(1) do |list, index|
-      puts "#{index}: #{list.title.capitalize}"
+    if List.count == 0
+      puts 'You have no TodoList, create one or type \'/exit\''
+    else
+      puts "\n---------------TodoLists---------------"
+      puts '#   title'
+      puts '--   -----'
+      List.all.each.with_index(1) do |list, index|
+        puts "#{index}: #{list.title.capitalize}"
+      end
     end
   end
 
   def new
-
-    puts 'You have no TodoList, create one or type \'/exit\'' if List.count == 0
 
     print 'Enter Title: '
     get_input
