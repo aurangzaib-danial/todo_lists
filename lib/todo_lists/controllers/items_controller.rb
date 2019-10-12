@@ -14,7 +14,9 @@ class TodoLists::ItemsController
     puts
   end
 
-  def 
+  def done
+    
+  end
 
   def edit
     item_index = last_input.split(' ')[1]
