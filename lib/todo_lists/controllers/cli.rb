@@ -10,6 +10,8 @@ class TodoLists::CLI
   def call
     if TodoLists::List.count == 0
       lists_controller.new
+      @list = TodoLists::List.last
+      items_menu if @list
     else
       lists_menu  # only list menu if a list was created
     end
@@ -19,18 +21,27 @@ class TodoLists::CLI
     lists_controller.index
     until lists_controller.last_input == '/exit'
 
-      puts 'Enter list number or \'/help\' for more options or type /exit'
+      puts "\nEnter list number or \'/help\' for more options or type /exit"
 
       lists_controller.get_input
 
       last_input = lists_controller.last_input.downcase
 
       if last_input.to_i > 0
-        @list = TodoLists::List.find_by_id(last_input)
+        @list = TodoLists::List.find_by_index(last_input)
         items_menu if @list
 
       elsif last_input == '/new'
+        last_before_new = TodoLists::List.last
+
         lists_controller.new
+
+        last_after_new = TodoLists::List.last
+
+        if last_before_new != last_after_new # find out if a list was created in new action or not
+          @list = last_after_new
+          items_menu
+        end
 
       elsif last_input.match?(/\/edit\s\d+/)
         lists_controller.edit
@@ -52,41 +63,49 @@ class TodoLists::CLI
 
   def items_menu
     items_controller.list = @list
-    items_controller.new
 
     until items_controller.last_input == '/exit' || items_controller.last_input == '/main'
-      items_controller.index
+      if @help_shown
+        @help_shown = false
+      else
+        items_controller.index
+      end
+
+      puts "\nEnter new item or \'/help\' for more options or type /main"
 
       items_controller.get_input
       last_input = items_controller.last_input.downcase
 
       if last_input.match?(/\/done\s\d+/)
         items_controller.done
-        items_controller.index
 
       elsif last_input.match?(/\/edit\s\d+/)
         items_controller.edit
-        items_controller.index
 
       elsif last_input.match?(/\/delete\s\d+/)
         items_controller.delete
-        items_controller.index
 
       elsif last_input == '/index'
         items_controller.index
 
       elsif last_input == '/help'
         items_controller.help
+        @help_shown = true
 
-      else
+      elsif last_input != '/exit' and last_input != '/main'
         items_controller.new
-        items_controller.index
       end
 
     end
 
-    lists_controller.last_input = '/exit' if items_controller.last_input == '/exit'
-    # for exiting out of the lists menu loop as well
+    case items_controller.last_input.downcase
+    when '/main'
+      lists_controller.index
+    when '/exit'
+      lists_controller.last_input = '/exit' # exit from lists_menu as well
+    end
+
+    items_controller.last_input = nil # reset last_input
   end
 
 end

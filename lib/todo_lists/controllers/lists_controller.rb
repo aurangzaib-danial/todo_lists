@@ -59,11 +59,7 @@ class TodoLists::ListsController
 
     list = List.new(title: last_input)
 
-    if list.valid? and
-      list.save
-    else
-      new
-    end
+    list.save
   end
 
   def get_input

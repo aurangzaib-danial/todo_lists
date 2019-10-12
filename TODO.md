@@ -18,8 +18,8 @@ Implement Functionality
   [X] update a list title
   [X] delete a list
   [X] Move all list cli functionality to its own controller
-  [] list a specific list
-  [] After new action, enter the list
+  [X] list a specific list
+  [X] After new action, enter the list
   [] add items to a list
   [] edit item of a list
   [] update item of a list

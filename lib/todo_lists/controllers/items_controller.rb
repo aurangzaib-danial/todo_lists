@@ -1,7 +1,6 @@
 class TodoLists::ItemsController
 
-  attr_reader :last_input
-  attr_accessor :list
+  attr_accessor :list, :last_input
 
   Item = TodoLists::Item
 
@@ -11,60 +10,55 @@ class TodoLists::ItemsController
     puts '/edit {item_id}'
     puts '/delete {item_id}'
     puts '/done {item_id} (mark item complete)'
+    puts '/exit'
     puts
   end
 
+  def 
+
   def edit
-    list_id = last_input.split(' ')[1]
-    list = List.find_by_id(list_id)
-    if list
-      print 'Enter new title: '
+    item_index = last_input.split(' ')[1]
+    item = Item.find_by_index_and_list_id(index: item_index, list_id: list.id)
+    if item
+      print 'Enter new content: '
       get_input
-      list.title = last_input
-      list.save
+      item.content = last_input
+      item.save
     end
   end
 
   def delete
-    list_id = last_input.split(' ')[1]
-    list = List.find_by_id(list_id)
-    if list
+    item_index = last_input.split(' ')[1]
+    item = Item.find_by_index_and_list_id(index: item_index, list_id: list.id)
+    if item
       print 'Are you sure? Enter \'y/n\': '
       get_input
 
       if last_input.downcase == 'y'
-        list.destroy
+        item.destroy
       end
 
     end
   end
 
   def index
-    puts
-    puts "---------------#{list.title.capitalize}---------------"
-    puts 'id   item'
-    puts '--   -----'
-    list.items.each do |item|
-      puts "#{item.id}: #{item.content.capitalize}"
+    if list.items.count == 0
+      puts "\nYou have no items in '#{@list.title.capitalize}'."
+    else
+      puts "\n---------------#{list.title.capitalize}---------------"
+      puts '#   item'
+      puts '--   -----'
+      list.items.reload.each.with_index(1) do |item, index|
+        puts "#{index}: #{item.content.capitalize}"
+      end
     end
   end
 
   def new
 
-    puts "\nYou have no items in '#{list.title.capitalize}', create one or type \'/exit\'" if list.items.count == 0
+    item = Item.new(list: list, content: last_input)
 
-    print 'Enter item content: '
-    get_input
-
-    return if last_input == '/exit'
-
-    item = Item.new(content: last_input, list: list)
-
-    if item.valid? and
-      item.save
-    else
-      new
-    end
+    item.save
   end
 
   def get_input
