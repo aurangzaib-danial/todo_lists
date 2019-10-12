@@ -24,9 +24,9 @@ Implement Functionality
   [X] edit item of a list
   [X] mark an item done of a list
   [X] delete item of a list
-  [] Update README
-  [] Build gem, install locally and test
-  [] Push to rubygems.org
+  [X] Update README
+  [X] Build gem, install locally and test
+  [X] Push to rubygems.org
 
 Associations
   List has many items
