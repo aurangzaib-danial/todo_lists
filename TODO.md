@@ -20,10 +20,10 @@ Implement Functionality
   [X] Move all list cli functionality to its own controller
   [X] list a specific list
   [X] After new action, enter the list
-  [] add items to a list
-  [] edit item of a list
-  [] update item of a list
-  [] delete item of a list
+  [X] add items to a list
+  [X] edit item of a list
+  [X] mark an item done of a list
+  [X] delete item of a list
 
 Associations
   List has many items
