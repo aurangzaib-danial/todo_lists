@@ -12,14 +12,20 @@ class TodoLists::CLI
       lists_controller.new
       @list = TodoLists::List.last
       items_menu if @list
-    else
-      lists_menu  # only list menu if a list was created
     end
+
+    lists_menu
   end
 
   def lists_menu
-    lists_controller.index
+
     until lists_controller.last_input == '/exit'
+
+      if @help_shown
+        @help_shown = false
+      else
+        lists_controller.index
+      end
 
       puts "\nEnter list number or \'/help\' for more options or type /exit"
 
@@ -45,17 +51,13 @@ class TodoLists::CLI
 
       elsif last_input.match?(/\/edit\s\d+/)
         lists_controller.edit
-        lists_controller.index
 
       elsif last_input.match?(/\/delete\s\d+/)
         lists_controller.delete
-        lists_controller.index
-
-      elsif last_input == '/index'
-        lists_controller.index
 
       elsif last_input == '/help'
         lists_controller.help
+        @help_shown = true
       end
 
     end
@@ -85,9 +87,6 @@ class TodoLists::CLI
       elsif last_input.match?(/\/delete\s\d+/)
         items_controller.delete
 
-      elsif last_input == '/index'
-        items_controller.index
-
       elsif last_input == '/help'
         items_controller.help
         @help_shown = true
@@ -99,8 +98,6 @@ class TodoLists::CLI
     end
 
     case items_controller.last_input.downcase
-    when '/main'
-      lists_controller.index
     when '/exit'
       lists_controller.last_input = '/exit' # exit from lists_menu as well
     end

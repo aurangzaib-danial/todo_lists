@@ -6,7 +6,6 @@ class TodoLists::ItemsController
 
   def help
     puts "\nOptions available"
-    puts '/index (list all items)'
     puts '/edit {item_id}'
     puts '/delete {item_id}'
     puts '/done {item_id} (mark item complete)'

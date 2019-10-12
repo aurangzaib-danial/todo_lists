@@ -6,7 +6,6 @@ class TodoLists::ListsController
 
   def help
     puts "\nOptions available"
-    puts '/index (lists all TodoLists)'
     puts '/new (for a new list)'
     puts '/edit {list_number}'
     puts '/delete {list_number}'
