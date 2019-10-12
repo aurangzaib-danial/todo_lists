@@ -32,5 +32,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pry", "~> 0.12.2"
   spec.add_development_dependency "sinatra-activerecord", "2.0.14"
   spec.add_dependency "activerecord", "~> 5.2"
-  spec.add_dependency "sqlite3", "1.3.13"
+  spec.add_dependency "sqlite3", "1.4.1"
 end
