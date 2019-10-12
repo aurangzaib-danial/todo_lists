@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["aurangzaib.danial@gmail.com"]
 
   spec.summary       = "Quickly make todo lists using terminal"
-  spec.description   = "Allow users to be able to make todo lists without moving away from terminal, all the lists are persisted to database"
+  spec.description   = "Allow users to be able to make todo lists without moving away from terminal, all the lists are persisted to database. \nYou need to have sqlite installed on your computer before hand http://www.sqlite.org"
   spec.homepage      = "https://github.com/aurangzaib-danial/todo_lists"
   spec.license       = "MIT"
 
