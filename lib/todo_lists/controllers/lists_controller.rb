@@ -1,6 +1,6 @@
 class TodoLists::ListsController
 
-  attr_reader :last_input
+  attr_accessor :last_input
 
   List = TodoLists::List
 
@@ -14,8 +14,8 @@ class TodoLists::ListsController
   end
 
   def edit
-    list_id = last_input.split(' ')[1]
-    list = List.find_by_id(list_id)
+    list_index = last_input.split(' ')[1]
+    list = List.find_by_index(list_index)
     if list
       print 'Enter new title: '
       get_input
@@ -25,8 +25,8 @@ class TodoLists::ListsController
   end
 
   def delete
-    list_id = last_input.split(' ')[1]
-    list = List.find_by_id(list_id)
+    list_index = last_input.split(' ')[1]
+    list = List.find_by_index(list_index)
     if list
       print 'Are you sure? Enter \'y/n\': '
       get_input
@@ -41,10 +41,10 @@ class TodoLists::ListsController
   def index
     puts
     puts '---------------TodoLists---------------'
-    puts 'id   title'
+    puts '#   title'
     puts '--   -----'
-    List.all.each do |list|
-      puts "#{list.id}: #{list.title.capitalize}"
+    List.all.each.with_index(1) do |list, index|
+      puts "#{index}: #{list.title.capitalize}"
     end
   end
 

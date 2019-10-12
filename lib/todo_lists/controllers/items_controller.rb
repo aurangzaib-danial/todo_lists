@@ -1,15 +1,16 @@
 class TodoLists::ItemsController
 
   attr_reader :last_input
+  attr_accessor :list
 
   Item = TodoLists::Item
 
   def help
     puts "\nOptions available"
-    puts '/index (lists all TodoLists)'
-    puts '/new (for a new list)'
-    puts '/edit {list_number}'
-    puts '/delete {list_number}'
+    puts '/index (list all items)'
+    puts '/edit {item_id}'
+    puts '/delete {item_id}'
+    puts '/done {item_id} (mark item complete)'
     puts
   end
 
@@ -40,27 +41,27 @@ class TodoLists::ItemsController
 
   def index
     puts
-    puts '---------------TodoLists---------------'
-    puts 'id   title'
+    puts "---------------#{list.title.capitalize}---------------"
+    puts 'id   item'
     puts '--   -----'
-    List.all.each do |list|
-      puts "#{list.id}: #{list.title.capitalize}"
+    list.items.each do |item|
+      puts "#{item.id}: #{item.content.capitalize}"
     end
   end
 
   def new
 
-    puts 'You have no TodoList, create one or type \'/exit\'' if List.count == 0
+    puts "\nYou have no items in '#{list.title.capitalize}', create one or type \'/exit\'" if list.items.count == 0
 
-    print 'Enter Title: '
+    print 'Enter item content: '
     get_input
 
     return if last_input == '/exit'
 
-    list = List.new(title: last_input)
+    item = Item.new(content: last_input, list: list)
 
-    if list.valid? and
-      list.save
+    if item.valid? and
+      item.save
     else
       new
     end
