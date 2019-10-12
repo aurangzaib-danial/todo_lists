@@ -4,19 +4,7 @@ Simple Command Line Application for your every day TodoLists needs, you do not h
 
 ## Installation
 
-Note: You need to have sqlite installed in your computer http://www.sqlite.org
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'todo_lists'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
+From your terminal
 
     $ gem install todo_lists
 
