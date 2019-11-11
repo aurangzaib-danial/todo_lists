@@ -2,6 +2,7 @@
 
 Simple Command Line Application for your every day TodoLists needs, you do not have leave your terminal for your todolists, all the lists are persisted to database, never worry about losing your precious lists.
 
+
 ## Installation
 
 From your terminal
